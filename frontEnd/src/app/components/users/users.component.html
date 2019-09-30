@@ -4,23 +4,24 @@
             <div class="card">
                 <div class="card-content">
                     <form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="userService.selectedUser._id">
                         <div class="row">
                             <div class="input-field col-s12">
-                                <input type="text" name="name" #name="ngModel" 
-                                    [(ngModel)]="userService.selectedUser.name" id="first_name"  class="validate">
-                                <label for="first_name">First Name</label>
+                                <input type="text" name="name" #name="ngModel"
+                                    [(ngModel)]="userService.selectedUser.name" id="name" class="validate" placeholder="Nombre">
                             </div>
                             <div class="input-field col-s12">
                                 <input type="text" name="position" #position="ngModel"
-                                    [(ngModel)]="userService.selectedUser.position" placeholder="Ingresa tu posiccion">
+                                    [(ngModel)]="userService.selectedUser.position" id="position" placeholder="Cargo">
+                                
                             </div>
                             <div class="input-field ">
                                 <input type="text" name="office" #office="ngModel"
-                                    [(ngModel)]="userService.selectedUser.office" placeholder="Ingresa tu office">
+                                    [(ngModel)]="userService.selectedUser.office" id="office" placeholder="Oficina">
                             </div>
                             <div class="input-field ">
                                 <input type="text" name="salary" #salary="ngModel"
-                                    [(ngModel)]="userService.selectedUser.salary" placeholder="Ingresa tu salary">
+                                    [(ngModel)]="userService.selectedUser.salary" id="salary" placeholder="Salary">
                             </div>
                             <div class="card-action">
                                 <div class="input-field col-s12">
@@ -34,7 +35,31 @@
             </div>
         </div>
         <div class="col s7">
-
+            <table>
+                <thead>
+                    <th>Nombre</th>
+                    <th>Cargo</th>
+                    <th>Oficina</th>
+                    <th>Operacion</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of userService.users">
+                        <td>{{user.name}}</td>
+                        <td>{{user.position}}</td>
+                        <td>{{user.office}}</td>
+                        <td>
+                            <a (click)="editUser(user)">
+                                <i class="material-icons">edit</i>
+                            </a>
+                            
+                        </td>
+                        <td>
+                            <a (click)="deleteUser(user._id)"><i class="material-icons">delete</i></a>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
