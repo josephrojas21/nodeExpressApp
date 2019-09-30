@@ -3,8 +3,32 @@
         <div class="col s5">
             <div class="card">
                 <div class="card-content">
-                    <form #employeeForm="ngForm" (ngSubmit)="addEmployee(employeeForm)">
-                        
+                    <form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+                        <div class="row">
+                            <div class="input-field col-s12">
+                                <input type="text" name="name" #name="ngModel" 
+                                    [(ngModel)]="userService.selectedUser.name" id="first_name"  class="validate">
+                                <label for="first_name">First Name</label>
+                            </div>
+                            <div class="input-field col-s12">
+                                <input type="text" name="position" #position="ngModel"
+                                    [(ngModel)]="userService.selectedUser.position" placeholder="Ingresa tu posiccion">
+                            </div>
+                            <div class="input-field ">
+                                <input type="text" name="office" #office="ngModel"
+                                    [(ngModel)]="userService.selectedUser.office" placeholder="Ingresa tu office">
+                            </div>
+                            <div class="input-field ">
+                                <input type="text" name="salary" #salary="ngModel"
+                                    [(ngModel)]="userService.selectedUser.salary" placeholder="Ingresa tu salary">
+                            </div>
+                            <div class="card-action">
+                                <div class="input-field col-s12">
+                                    <button class="btn" (click)="resetForm(userForm)">Limpiar</button>
+                                    <button class="btn right">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
