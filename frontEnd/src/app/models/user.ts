@@ -1,16 +1,14 @@
 export class User {
-    constructor(_id = '', position = '', office = '',salary = 0){
+    constructor(_id = '', correo = '', password = ''){
         this._id = _id;
         this.name = name;
-        this.position = position;
-        this.office = office;
-        this.salary = salary
+        this.correo = correo;
+        this.password = password;
     }
 
     _id: string;
     name: string;
-    position: string;
-    office: string;
-    salary: number;
+    correo: string;
+    password: string;
 
 }
