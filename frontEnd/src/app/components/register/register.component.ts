@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { AuthSericeService, TokenPayload } from '../../services/auth-serice.service';
 import { Router} from '@angular/router';
 import { User } from 'src/app/models/user';
 
@@ -13,10 +14,16 @@ declare var M:any;
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  
+  credentials: TokenPayload = {
+    email: '',
+    name: '',
+    password: ''
+  };
   confirmPassword = "";
 
-  constructor(public userService: UserService, private route: Router) { }
+  constructor(public userService: UserService, private route: Router,
+              private auth: AuthSericeService) { }
 
   ngOnInit() {
 
@@ -42,6 +49,14 @@ export class RegisterComponent implements OnInit {
       this.userService.selectedUser = new User();
     }
 
+  }
+
+  register(form: NgForm) {
+    this.auth.register(form.value).subscribe(() => {
+      this.route.navigateByUrl('/users');
+    }, (err) => {
+      console.error(err);
+    });
   }
 
 }

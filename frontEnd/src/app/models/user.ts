@@ -4,11 +4,14 @@ export class User {
         this.name = name;
         this.correo = correo;
         this.password = password;
+        
     }
 
     _id: string;
     name: string;
     correo: string;
     password: string;
+    exp: number;
+    iat: number;
 
 }

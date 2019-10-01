@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col s5">
+        <div class="col s12">
             <div class="card">
                 <div class="card-content">
                     <form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
@@ -8,25 +8,18 @@
                         <div class="row">
                             <div class="input-field col-s12">
                                 <input type="text" name="name" #name="ngModel"
-                                    [(ngModel)]="userService.selectedUser.name" id="name" class="validate" placeholder="Nombre">
+                                    [(ngModel)]="userService.selectedUser.name" id="name" class="validate" placeholder="Titulo">
                             </div>
                             <div class="input-field col-s12">
                                 <input type="text" name="position" #position="ngModel"
-                                    [(ngModel)]="userService.selectedUser.position" id="position" placeholder="Cargo">
+                                    [(ngModel)]="userService.selectedUser.position" id="position" placeholder="descripcion">
                                 
                             </div>
-                            <div class="input-field ">
-                                <input type="text" name="office" #office="ngModel"
-                                    [(ngModel)]="userService.selectedUser.office" id="office" placeholder="Oficina">
-                            </div>
-                            <div class="input-field ">
-                                <input type="text" name="salary" #salary="ngModel"
-                                    [(ngModel)]="userService.selectedUser.salary" id="salary" placeholder="Salary">
-                            </div>
+                           
                             <div class="card-action">
                                 <div class="input-field col-s12">
                                     <button class="btn" (click)="resetForm(userForm)">Limpiar</button>
-                                    <button class="btn right">Guardar</button>
+                                    <button class="btn right">Publicar</button>
                                 </div>
                             </div>
                         </div>
@@ -37,16 +30,15 @@
         <div class="col s7">
             <table>
                 <thead>
-                    <th>Nombre</th>
-                    <th>Cargo</th>
-                    <th>Oficina</th>
+                    <th>nombre</th>
+                    <th>post</th>
+                    <th>fecha</th>
                     <th>Operacion</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of userService.users">
-                        <td>{{user.name}}</td>
-                        <td>{{user.position}}</td>
-                        <td>{{user.office}}</td>
+                    <tr *ngFor="let user of userService.post">
+                        <td>{{user.title}}</td>
+                        <td>{{user.content}}</td>
                         <td>
                             <a (click)="editUser(user)">
                                 <i class="material-icons">edit</i>

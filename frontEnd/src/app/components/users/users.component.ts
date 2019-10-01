@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { NgForm } from '@angular/forms';
 import { User } from 'src/app/models/user';
+import { AuthSericeService, UserDetails  } from 'src/app/services/auth-serice.service';
 
 declare var M:any;
 
@@ -11,11 +12,17 @@ declare var M:any;
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  details: UserDetails;
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService,private auth: AuthSericeService) { }
 
   ngOnInit() {
-    this.getUser();
+    
+    this.auth.profile().subscribe(user => {
+      this.details = user;
+    }, (err) => {
+      console.error('hola',err);
+    });
   }
 
   addUser(form: NgForm){
@@ -39,12 +46,11 @@ export class UsersComponent implements OnInit {
   }
 
   getUser(){
-    this.userService.getUsers()
+    this.auth.getUsers()
       .subscribe(res => {
-        this.userService.users = res as User[];
+        this.auth.users = res as User[];
         console.log(res);
-        
-        
+
       })
   }
 

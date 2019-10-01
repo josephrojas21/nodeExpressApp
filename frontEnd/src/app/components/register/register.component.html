@@ -6,20 +6,20 @@
             </div>
 
             <div class="col l12 m12 s12 ">
-                <form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+                <form #userForm="ngForm" (ngSubmit)="register(userForm)">
                     <div class="row">
                         <div class="input-field col l12 m12 s12 ">
                             <input id="disabled" type="text" class="validate" name="name" #name="ngModel"
-                                [(ngModel)]="userService.selectedUser.name">
+                                [(ngModel)]="auth.selectedUser.name">
                             <label for="disabled" class="active black-text">Nombre:</label>
                         </div>
                         <div class="input-field col l12 m12 s12 ">
                             <input id="disabled" type="email" class="validate" name="correo" #correo="ngModel"
-                                [(ngModel)]="userService.selectedUser.correo">
+                                [(ngModel)]="auth.selectedUser.correo">
                             <label for="disabled" class="active black-text">Correo:</label>
                         </div>
                         <div class="input-field col l12 m12 s12 ">
-                            <input id="disabled" type="password" class="validate" name="password" #password="ngModel"  [(ngModel)]="userService.selectedUser.password">
+                            <input id="disabled" type="password" class="validate" name="password" #password="ngModel"  [(ngModel)]="auth.selectedUser.password">
                             <label for="disabled" class="active black-text">contraseña:</label>
                         </div>
                         <div class="input-field col s12">
